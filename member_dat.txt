@@ -1,21 +1,21 @@
 {
     "members" : [
-				{
-						"name" : "Albert",
-						"skills" : ["Python3", "Medicine", "Statistics"],
-						"interests" : ["Automating my workflow", "puzzles", "boardgaming", "making things"]
-				},
-				{
-						"name" : "Jonathan",
-						"skills" : ["Lisp", "Emacs"],
-						"interests" : ["pizza"]
+        {
+            "name" : "Albert",
+            "skills" : ["Python3", "Medicine", "Statistics"],
+            "interests" : ["Automating my workflow", "puzzles", "boardgaming", "making things"]
+        },
+        {
+            "name" : "Jonathan",
+            "skills" : ["Lisp", "Emacs"],
+            "interests" : ["pizza"]
 
-				},
-				{
-						"name" : "Jason",
-						"skills" : ["Java", "C++", "C", "SQL", "algorithm design for efficiency", "RDBMS", "architecture and organization"],
-						"interests" : ["data analytics", "Python", "R", "PHP", "Ruby", "Javascript", ".NET", "Ruby on Fails", "machine learning",
-													 "AI in general"]
-				}
-    ]	
+        },
+        {
+            "name" : "Jason",
+            "skills" : ["Java", "C++", "C", "SQL", "algorithm design for efficiency", "RDBMS", "architecture and organization"],
+            "interests" : ["data analytics", "Python", "R", "PHP", "Ruby", "Javascript", ".NET", "Ruby on Fails", "machine learning",
+                           "AI in general"]
+        }
+    ] 
 }
