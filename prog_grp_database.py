@@ -7,39 +7,57 @@ currently writing list as a JSON txt file.  would like to implement as SQL or us
 - future implementation?
 """
 import json
+import peewee
 
-try:
-    with open("member_dat.txt", 'r') as f:
-        templist = json.load(f)
-except:
-    templist = []
+database = peewee.SqliteDatabase("members.db")
 
-print("Database so far: \n")
-for x in templist:
-    print(x)
+class Member(peewee.Model):
+    """
+    model of WB programming members with skills and interests
+    """
+    name = peewee.CharField()
 
-loop1 = True
+    class Meta:
+        database = database
+        
+class Skills(peewee.Model):
+    member = peewee.ForeignKeyField(Member, related_name="skills")
+    skill = peewee.CharField()
 
-while loop1:
-    not_done = True
-    while not_done:
-        var_dict = {"name":None, "skills":None, "interests":None}
-        tempvar = input("Enter your name (type stop or {Enter} to end): ")
-        if tempvar == "":
-            loop1 = False
-            break
-        else:
-            var_dict["name"] = tempvar
-        var_dict["skills"] = input("Enter your skills: ")
-        var_dict["interests"] = input("Enter your interests: ")
+    class Meta:
+        database = database
 
-        if input("{} is this correct? [Enter = Y]: ".format(var_dict)) == "":
-            not_done = False
-            templist.append(var_dict)
-        else:
-            print("O.K. Let's try that again.")
+class Interests(peewee.Model):
+    member = peewee.ForeignKeyField(Member, related_name="interests")
+    interest = peewee.CharField()
 
-print("list so far", templist)
+    class Meta:
+        database = database
 
-with open("member_dat.txt", 'w') as f:
-    json.dump(templist, f)
+def read_in(file):
+    try :
+        with open(file, 'r') as f:
+            return json.load(f)
+    except :
+        return []
+
+def write_out(userdata, file):
+    with open(file, 'w') as f:
+        json.dump(userdata, f)
+
+#print (read_in("member_dat.txt"))
+
+# moo = read_in("member_dat.txt")
+
+
+if __name__ == "__main__":
+    try:
+        Member.create_table()
+        database.create_tables([Member, Skills, Interests], safe=True)
+    except peewee.OperationalError:
+        print("Member table already exists!")
+
+    #member = Member.create(name="Jonathan")
+    # Skills.create(member=member, skill="Lisp")
+    # Skills.create(member=member, skill="Emacs")
+
