@@ -55,7 +55,7 @@ if __name__ == "__main__":
         Member.create_table()
         database.create_tables([Member, Skills, Interests], safe=True)
     except peewee.OperationalError:
-        print("Member table already exists!")
+        print("some table table already exists lol")
 
     #member = Member.create(name="Jonathan")
     # Skills.create(member=member, skill="Lisp")
